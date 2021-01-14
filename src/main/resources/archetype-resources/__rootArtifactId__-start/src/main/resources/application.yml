@@ -1,0 +1,19 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: order
+  datasource:
+    druid:
+      url: jdbc:mysql://localhost:3306/order-db?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&serverTimezone=GMT%2B8
+      username: root
+      password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis:
+  mapper-locations: classpath:mybatis/*.xml
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    com.dsy.order.gateway.database: debug
+  config: classpath:logback-spring.xml

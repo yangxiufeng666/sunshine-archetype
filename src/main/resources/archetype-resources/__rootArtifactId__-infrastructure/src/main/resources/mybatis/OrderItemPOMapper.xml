@@ -1,0 +1,131 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="${package}.gateway.database.OrderItemPOMapper">
+  <resultMap id="BaseResultMap" type="${package}.gateway.database.po.OrderItemPO">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="order_sn" jdbcType="VARCHAR" property="orderSn" />
+    <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="goods_quantity" jdbcType="VARCHAR" property="goodsQuantity" />
+    <result column="goods_price" jdbcType="INTEGER" property="goodsPrice" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, order_id, order_sn, goods_id, goods_name, goods_quantity, goods_price, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order_item
+    where id = ${symbol_pound}{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from order_item
+    where id = ${symbol_pound}{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="${package}.gateway.database.po.OrderItemPO">
+    insert into order_item (id, order_id, order_sn, 
+      goods_id, goods_name, goods_quantity, 
+      goods_price, create_time)
+    values (${symbol_pound}{id,jdbcType=INTEGER}, ${symbol_pound}{orderId,jdbcType=INTEGER}, ${symbol_pound}{orderSn,jdbcType=VARCHAR}, 
+      ${symbol_pound}{goodsId,jdbcType=INTEGER}, ${symbol_pound}{goodsName,jdbcType=VARCHAR}, ${symbol_pound}{goodsQuantity,jdbcType=VARCHAR}, 
+      ${symbol_pound}{goodsPrice,jdbcType=INTEGER}, ${symbol_pound}{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="${package}.gateway.database.po.OrderItemPO">
+    insert into order_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="orderSn != null">
+        order_sn,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="goodsName != null">
+        goods_name,
+      </if>
+      <if test="goodsQuantity != null">
+        goods_quantity,
+      </if>
+      <if test="goodsPrice != null">
+        goods_price,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ${symbol_pound}{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        ${symbol_pound}{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="orderSn != null">
+        ${symbol_pound}{orderSn,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        ${symbol_pound}{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null">
+        ${symbol_pound}{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsQuantity != null">
+        ${symbol_pound}{goodsQuantity,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPrice != null">
+        ${symbol_pound}{goodsPrice,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        ${symbol_pound}{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="${package}.gateway.database.po.OrderItemPO">
+    update order_item
+    <set>
+      <if test="orderId != null">
+        order_id = ${symbol_pound}{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="orderSn != null">
+        order_sn = ${symbol_pound}{orderSn,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        goods_id = ${symbol_pound}{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null">
+        goods_name = ${symbol_pound}{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsQuantity != null">
+        goods_quantity = ${symbol_pound}{goodsQuantity,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPrice != null">
+        goods_price = ${symbol_pound}{goodsPrice,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = ${symbol_pound}{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = ${symbol_pound}{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="${package}.gateway.database.po.OrderItemPO">
+    update order_item
+    set order_id = ${symbol_pound}{orderId,jdbcType=INTEGER},
+      order_sn = ${symbol_pound}{orderSn,jdbcType=VARCHAR},
+      goods_id = ${symbol_pound}{goodsId,jdbcType=INTEGER},
+      goods_name = ${symbol_pound}{goodsName,jdbcType=VARCHAR},
+      goods_quantity = ${symbol_pound}{goodsQuantity,jdbcType=VARCHAR},
+      goods_price = ${symbol_pound}{goodsPrice,jdbcType=INTEGER},
+      create_time = ${symbol_pound}{createTime,jdbcType=TIMESTAMP}
+    where id = ${symbol_pound}{id,jdbcType=INTEGER}
+  </update>
+</mapper>

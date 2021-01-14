@@ -1,0 +1,1 @@
+mvn archetype:generate "-DgroupId=com.mcg.bingo"  "-DartifactId=bingo" "-Dversion=1.0.0-SNAPSHOT" "-Dpackage=com.mcg.bingo" "-DarchetypeArtifactId=sunshine-archetype" "-DarchetypeGroupId=com.dsy.sunshine" "-DarchetypeVersion=1.0-SNAPSHOT"
