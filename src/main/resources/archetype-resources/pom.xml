@@ -128,5 +128,15 @@
             <name>ali-yun-maven</name>
             <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
         </repository>
+        <repository>
+            <id>eccCommonReleases</id>
+            <name>ecc-public</name>
+            <url>http://10.10.11.151:38081/repository/ecc-public/</url>
+        </repository>
+        <repository>
+            <id>ecc-cashier-Releases</id>
+            <name>ecc-cashier-release</name>
+            <url>http://10.10.11.151:38081/repository/ecc-cashier-release/</url>
+        </repository>
     </repositories>
 </project>
