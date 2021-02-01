@@ -1,9 +1,11 @@
 #set( $symbol_pound = '#' )
-#set( $symbol_dollar = '$' )
-#set( $symbol_escape = '\' )
-<?xml version="1.0" encoding="UTF-8"?>
+        #set( $symbol_dollar = '$' )
+        #set( $symbol_escape = '\' )
+        <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <contextName>${symbol_dollar}{APP_NAME}</contextName>
+    <springProperty name="PLATFORM" scope="context" source="log.platform"/>
+    <springProperty name="ENV" scope="context" source="log.env"/>
     <springProperty name="APP_NAME" scope="context" source="spring.application.name"/>
     <springProperty name="LOG_FILE" scope="context" source="logging.file" defaultValue="../logs/application/${symbol_dollar}{APP_NAME}"/>
     <springProperty name="LOG_POINT_FILE" scope="context" source="logging.file" defaultValue="../logs/point"/>
@@ -12,7 +14,7 @@
     <springProperty name="LOG_FILEMAXDAY" scope="context" source="logback.filemaxday" defaultValue="7"/>
     <springProperty name="ServerIP" scope="context" source="spring.cloud.client.ip-address" defaultValue="0.0.0.0"/>
     <springProperty name="ServerPort" scope="context" source="server.port" defaultValue="0000"/>
-    <springProperty scope="context" name="spring.log.level" source="spring.log.level"/>
+    <springProperty  name="log.level" scope="context" source="log.level"/>
 
     <!-- 彩色日志 -->
     <!-- 彩色日志依赖的渲染类 -->
@@ -22,15 +24,14 @@
 
     <!-- 彩色日志格式 -->
     <property name="CONSOLE_LOG_PATTERN"
-              value="[${symbol_dollar}{APP_NAME}:${symbol_dollar}{ServerIP}:${symbol_dollar}{ServerPort}] %clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%level){blue} %clr(${symbol_dollar}{PID}){magenta} %clr([%X{requestId}]){yellow} %clr([%thread]){orange} %clr(%logger){cyan} %m%n${symbol_dollar}{LOG_EXCEPTION_CONVERSION_WORD:-%wEx}" />
-    <property name="CONSOLE_LOG_PATTERN_NO_COLOR" value="[${symbol_dollar}{APP_NAME}:${symbol_dollar}{ServerIP}:${symbol_dollar}{ServerPort}] %d{yyyy-MM-dd HH:mm:ss.SSS} %level ${symbol_dollar}{PID} [%X{requestId}] [%thread] %logger %m%n${symbol_dollar}{LOG_EXCEPTION_CONVERSION_WORD:-%wEx}" />
+              value="[${symbol_dollar}{PLATFORM}:${symbol_dollar}{APP_NAME}:${symbol_dollar}{ENV}:${symbol_dollar}{ServerIP}:${symbol_dollar}{ServerPort}] %d{yyyy-MM-dd HH:mm:ss.SSS} %clr(%level){blue} %clr(${symbol_dollar}{PID}){magenta} %clr([%X{requestId}]){yellow} %clr([%thread]){orange} %clr(%logger){cyan} %m%n${symbol_dollar}{LOG_EXCEPTION_CONVERSION_WORD:-%wEx}" />
+    <property name="CONSOLE_LOG_PATTERN_NO_COLOR" value="[${symbol_dollar}{PLATFORM}:${symbol_dollar}{APP_NAME}:${symbol_dollar}{ENV}:${symbol_dollar}{ServerIP}:${symbol_dollar}{ServerPort}] %d{yyyy-MM-dd HH:mm:ss.SSS} %level ${symbol_dollar}{PID} [%X{requestId}] [%thread] %logger %m%n${symbol_dollar}{LOG_EXCEPTION_CONVERSION_WORD:-%wEx}" />
 
     <!-- 控制台日志 -->
     <appender name="StdoutAppender" class="ch.qos.logback.core.ConsoleAppender">
         <withJansi>true</withJansi>
         <encoder>
-            <pattern>${symbol_dollar}{CONSOLE_LOG_PATTERN}</pattern>
-<!--            <pattern>[${symbol_dollar}{APP_NAME}:${symbol_dollar}{ServerIP}:${symbol_dollar}{ServerPort}] %clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%level){blue} %clr(${symbol_dollar}{PID}){magenta} %clr([%X{requestId}]){yellow} %clr([%thread]){orange} %clr(%logger){cyan} %m%n${symbol_dollar}{LOG_EXCEPTION_CONVERSION_WORD:-%wEx}</pattern>-->
+            <pattern>${symbol_dollar}{CONSOLE_LOG_PATTERN_NO_COLOR}</pattern>
             <charset>UTF-8</charset>
         </encoder>
     </appender>
@@ -102,9 +103,8 @@
         <appender-ref ref="audit_log"/>
     </appender>
 
-    <root level="INFO">
+    <root level="${symbol_dollar}{log.level}">
         <appender-ref ref="StdoutAppender"/>
         <appender-ref ref="file_async"/>
     </root>
-
 </configuration>

@@ -17,3 +17,9 @@ logging:
     org.springframework.web: INFO
     com.dsy.order.gateway.database: debug
   config: classpath:logback-spring.xml
+
+# 自定义日志配置，便于日志中心收集，可通过环境区分
+log:
+  level: INFO
+  platform: sunshine
+  env: dev
