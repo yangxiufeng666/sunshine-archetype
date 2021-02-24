@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @date 2021-01-11
  * @time 20:13
  */
-@SpringBootApplication(scanBasePackages = {"${package}","com.dsy.sunshine.web"})
+@SpringBootApplication
 @MapperScan( basePackages = {"${package}.gateway.database"})
 @EnableTransactionManagement
 public class Application {

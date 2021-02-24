@@ -16,7 +16,7 @@
         <druid-starter.version>1.2.4</druid-starter.version>
         <spring-boot.version>2.2.12.RELEASE</spring-boot.version>
         <sunshine-core.version>1.0.0</sunshine-core.version>
-        <sunshine-web.version>1.0.0</sunshine-web.version>
+        <sunshine-web.version>1.0.1</sunshine-web.version>
         <sunshine-util.version>1.0.0-SNAPSHOT</sunshine-util.version>
         <guava.version>29.0-jre</guava.version>
     </properties>
