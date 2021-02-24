@@ -31,7 +31,7 @@
             </dependency>
             <dependency>
                 <groupId>com.dsy.sunshine</groupId>
-                <artifactId>sunshine-web</artifactId>
+                <artifactId>sunshine-web-starter</artifactId>
                 <version>${sunshine-web.version}</version>
             </dependency>
             <dependency>
