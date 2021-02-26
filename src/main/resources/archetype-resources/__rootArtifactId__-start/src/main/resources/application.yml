@@ -3,21 +3,27 @@ server:
 spring:
   application:
     name: order
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    locale: zh_CN
+    time-zone: GMT+8
   datasource:
     druid:
       url: jdbc:mysql://localhost:3306/order-db?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&serverTimezone=GMT%2B8
       username: root
       password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
-mybatis:
-  mapper-locations: classpath:mybatis/*.xml
 logging:
   level:
     root: INFO
     org.springframework.web: INFO
     com.dsy.order.gateway.database: debug
   config: classpath:logback-spring.xml
-
+mybatis:
+  mapper-locations: classpath:mybatis/*.xml
+#自定义mybatis日志输出级别
+#  configuration:
+#    log-impl: ${your package}.config.MybatisLogger
 # 自定义日志配置，便于日志中心收集，可通过环境区分
 log:
   level: INFO
